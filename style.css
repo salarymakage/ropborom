@@ -507,8 +507,27 @@ img {
 .section__subtitle {
   font-size: var(--small-font-size);
   color: var(--text-color-light);
-  margin-left: 1rem; /* Adds some space between the title and subtitle */
-  white-space: nowrap; /* Prevents the subtitle from wrapping to the next line */
+  margin-left: 1rem;
+  white-space: normal; /* Allows the text to wrap */
+  overflow-wrap: break-word; /* Breaks long words if necessary */
+  word-wrap: break-word; /* For older browsers */
+}
+
+@media (max-width: 768px) {
+  .section__subtitle {
+      font-size: 0.75rem; /* Reduce font size for smaller screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .education__header {
+      flex-direction: column; /* Stack title and subtitle vertically on very small screens */
+      align-items: flex-start; /* Align items to the left */
+  }
+
+  .section__subtitle {
+      margin-left: 0; /* Remove left margin for better alignment */
+  }
 }
 
 .section__description {
@@ -738,67 +757,81 @@ img {
 
 
 /*--------------------------------------------------------------
-        # Skills Summary Section
-        --------------------------------------------------------------*/
-        .skills-summary {
-          padding: 30px 0;
-      }
+# Skills Summary Section
+--------------------------------------------------------------*/
+.skills-summary {
+  padding: 30px 0;
+}
 
-      .skills-summary .row {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 2rem;
-      }
+.skills-summary .row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
 
-      .skills-summary .skill-item {
-          padding: 50px 30px;
-          transition: all ease-in-out 0.4s;
-          height: 100%;
-          text-align: center;
-      }
+/* For tablets and smaller screens */
+@media (max-width: 768px) {
+  .skills-summary .row {
+    grid-template-columns: repeat(2, 1fr); /* Two columns on medium screens */
+  }
+}
 
-      .skills-summary .circular-progress {
-          width: 100px;
-          height: 100px;
-          background-color: #ddd;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          position: relative;
-          background: conic-gradient(
-              var(--accent-color) calc(var(--progress) * 1%),
-              #ddd calc(var(--progress) * 1%)
-          );
-      }
+/* For mobile devices */
+@media (max-width: 576px) {
+  .skills-summary .row {
+    grid-template-columns: 1fr; /* One column on small screens */
+  }
+}
 
-      .skills-summary .skill-item .skill__value {
-          font-size: 1.5rem;
-          font-weight: bold;
-          color: #333;
-          position: absolute;
-      }
+.skills-summary .skill-item {
+  padding: 50px 30px;
+  transition: all ease-in-out 0.4s;
+  height: 100%;
+  text-align: center;
+}
 
-      .skills-summary .skill-item h4 {
-          font-weight: 700;
-          margin-top: 15px;
-          margin-bottom: 10px;
-          font-size: 20px;
-      }
+.skills-summary .circular-progress {
+  width: 100px;
+  height: 100px;
+  background-color: #ddd;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: conic-gradient(
+    var(--accent-color) calc(var(--progress) * 1%),
+    #ddd calc(var(--progress) * 1%)
+  );
+}
 
-      .skills-summary .skill-item p {
-          line-height: 24px;
-          font-size: 14px;
-          margin-bottom: 0;
-      }
+.skills-summary .skill-item .skill__value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  position: absolute;
+}
 
-      .skills-summary .skill-item:hover {
-          transform: translateY(-10px);
-      }
+.skills-summary .skill-item h4 {
+  font-weight: 700;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
 
-      .stretched-link{
-        color:var(--first-color);
-      }
+.skills-summary .skill-item p {
+  line-height: 24px;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.skills-summary .skill-item:hover {
+  transform: translateY(-10px);
+}
+
+.stretched-link {
+  color: var(--first-color);
+}
 
 /*--------------------------------------------------------------
 # Expertise Section
